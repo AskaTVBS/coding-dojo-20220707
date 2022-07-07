@@ -14,38 +14,41 @@ use function PHPUnit\Framework\assertEquals;
  */
 class FizzBuzzTest extends TestCase
 {
-
-    public $t = new FizzBuzz();
-
     /** @coversNothing
      */
     public function testFizzbuzzInt()
     {
-        $this->assertEquals("1", $this->t->echoFizzbuzz(1));
-        $this->assertEquals("2", $this->t->echoFizzbuzz(2));
-        $this->assertEquals("4", $this->t->echoFizzbuzz(4));
+        $t = new FizzBuzz();
+        $this->assertEquals("1", $t->echoFizzbuzz(1));
+        $this->assertEquals("2", $t->echoFizzbuzz(2));
+        $this->assertEquals("4", $t->echoFizzbuzz(4));
     }
 
     /** @coversNothing
      */
     public function testFizzbuzzForFizz()
     {
-        $this->assertEquals("fizz", $this->t->echoFizzbuzz(3));
+        $t = new FizzBuzz();
+        $this->assertEquals("fizz", $t->echoFizzbuzz(3));
     }
 
     /** @coversNothing
      */
     public function testFizzbuzzForBuzz()
     {
-        $this->assertEquals("buzz", $this->t->echoFizzbuzz(5));
+        $t = new FizzBuzz();
+        $this->assertEquals("buzz", $t->echoFizzbuzz(5));
     }
 
-    /** @coversNothing
-     */
-    public function testFizzbuzzForException()
-    {
-        $this->assertEquals("", $this->t->echoFizzbuzz(1.1));
-    }
+    // /** @coversNothing
+    //  */
+    // public function testFizzbuzzForException()
+    // {
+    //     $this->expectException(InvalidArgumentException::class);
+
+
+    //     $t->echoFizzbuzz(1.1);
+    // }
 
 } 
-                       
+                                 

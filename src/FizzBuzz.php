@@ -12,6 +12,3 @@ class FizzBuzz
         return $num;
     }
 }
-
-
-
