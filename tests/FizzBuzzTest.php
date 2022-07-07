@@ -40,15 +40,15 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("buzz", $t->echoFizzbuzz(5));
     }
 
-    // /** @coversNothing
-    //  */
-    // public function testFizzbuzzForException()
-    // {
-    //     $this->expectException(InvalidArgumentException::class);
+    /** @coversNothing
+     */
+    public function testFizzbuzzForException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
 
-
-    //     $t->echoFizzbuzz(1.1);
-    // }
+        $t = new FizzBuzz();
+        $t->echoFizzbuzz(1.1);
+    }
 
 } 
                                  
