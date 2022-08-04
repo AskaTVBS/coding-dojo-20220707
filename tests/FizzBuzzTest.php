@@ -31,7 +31,6 @@ class FizzBuzzTest extends TestCase
         $t = new FizzBuzz();
         $this->assertEquals("fizz", $t->echoFizzbuzz(13));
         $this->assertEquals("fizz", $t->echoFizzbuzz(23));
-        $this->assertEquals("fizz", $t->echoFizzbuzz(32));
     }
 
             /** @coversNothing
@@ -40,8 +39,20 @@ class FizzBuzzTest extends TestCase
     {
         $t = new FizzBuzz();
         $this->assertEquals("buzz", $t->echoFizzbuzz(59));
-        //$this->assertEquals("fizzbuzz", $t->echoFizzbuzz(35));
-        //$this->assertEquals("buzz", $t->echoFizzbuzz(65));
+        $this->assertEquals("fizzbuzz", $t->echoFizzbuzz(51));
+        $this->assertEquals("fizzbuzz", $t->echoFizzbuzz(54));
+        $this->assertEquals("buzz", $t->echoFizzbuzz(52));
+        $this->assertEquals("buzz", $t->echoFizzbuzz(65));
+    }
+
+                /** @coversNothing
+     */
+    public function testFizzbuzzInthas7()
+    {
+        $t = new FizzBuzz();
+        $this->assertEquals("whizz", $t->echoFizzbuzz(7));
+        $this->assertEquals("whizz", $t->echoFizzbuzz(14));
+        $this->assertEquals("whizz", $t->echoFizzbuzz(28));
     }
 
     /** @coversNothing
@@ -70,6 +81,27 @@ class FizzBuzzTest extends TestCase
         $t = new FizzBuzz();
         $this->assertEquals("fizzbuzz", $t->echoFizzbuzz(15));
         $this->assertEquals("fizzbuzz", $t->echoFizzbuzz(90));
+    }
+
+
+    /** @coversNothing
+     */
+    public function testFizzbuzzForWhizz()
+    {
+        $t = new FizzBuzz();
+        $this->assertEquals("whizz", $t->echoFizzbuzz(71));
+        $this->assertEquals("whizz", $t->echoFizzbuzz(72));
+        $this->assertEquals("whizz", $t->echoFizzbuzz(74));
+    }
+
+    /** @coversNothing
+     */
+    public function testFizzbuzzForFizzBuzzWhizz()
+    {
+        $t = new FizzBuzz();
+        $this->assertEquals("fizzbuzzwhizz", $t->echoFizzbuzz(35));
+        $this->assertEquals("fizzbuzzwhizz", $t->echoFizzbuzz(57));
+        $this->assertEquals("fizzbuzzwhizz", $t->echoFizzbuzz(75));
     }
 
     /** @coversNothing
@@ -143,4 +175,4 @@ class FizzBuzzTest extends TestCase
     }
 
 } 
-                                  
+                                         
