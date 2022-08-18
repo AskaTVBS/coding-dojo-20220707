@@ -90,8 +90,15 @@ class FizzBuzzTest extends TestCase
     {
         $t = new FizzBuzz();
         $this->assertEquals("whizz", $t->echoFizzbuzz(71));
-        $this->assertEquals("whizz", $t->echoFizzbuzz(72));
         $this->assertEquals("whizz", $t->echoFizzbuzz(74));
+    }
+
+      /** @coversNothing
+     */
+    public function testFizzbuzzForFizzWhizz()
+    {
+        $t = new FizzBuzz();
+        $this->assertEquals("fizzwhizz", $t->echoFizzbuzz(72));
     }
 
     /** @coversNothing
