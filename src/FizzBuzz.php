@@ -1,11 +1,21 @@
 <?php
 namespace App;
-
 class FizzBuzz
 {
     public $isFizz = false;
     public $isBuzz = false;
     public $isWhizz = false;
+    public $fizz = 'fizz';
+    public $buzz = 'buzz';
+    public $whizz = 'whizz';
+    public function __construct($translator = null) {
+        if(!empty($translator)) {
+            $this->fizz = $translator->main($this->fizz);
+            $this->buzz = $translator->main($this->buzz);
+            $this->whizz = $translator->main($this->whizz);
+        }
+    }
+
     public function echoFizzbuzz($num)
     {
         if(!is_int($num)) throw new \InvalidArgumentException('only int is allowd');
@@ -23,9 +33,9 @@ class FizzBuzz
         $checkFizzBuzzWhizzStr = $this->checkFizzBuzzWhizzStr($num);
 
         if(!$this->isFizz && !$this->isBuzz && !$this->isWhizz ){return $num;}
-        if($this->isFizz == true) $returnStr .= "fizz";
-        if($this->isBuzz == true) $returnStr .= "buzz";
-        if($this->isWhizz == true) $returnStr .= "whizz";
+        if($this->isFizz == true) $returnStr .= $this->fizz;
+        if($this->isBuzz == true) $returnStr .= $this->buzz;
+        if($this->isWhizz == true) $returnStr .= $this->whizz;
 
         return $returnStr;
     }
@@ -42,6 +52,16 @@ class FizzBuzz
         if(strpos($num,"3")!==false){ $this->isFizz = true;}
         if(strpos($num,"5")!==false){ $this->isBuzz = true;}
         if(strpos($num,"7")!==false){ $this->isWhizz = true;}
+    }
+
+    public function getString() {
+        $url = '';
+        $this->fizz = $this->outputString();
+        
+    }
+
+    public function outputString() {
+        return json_encode([0 => '三陽開泰']);
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Tests;
 
 use App\FizzBuzz;
+use App\ITranslator;
 use PHPUnit\Framework\TestCase;
 use function PHPUnit\Framework\assertEquals;
 
@@ -33,6 +34,31 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("fizz", $t->echoFizzbuzz(23));
     }
 
+    /** @coversNothing
+     */
+    public function test多國語系三的feedback()
+    {
+        // 幫我建立一個假的翻譯機，然後我等一下會定義一下"main"這個function的行為
+        $translator = $this->getMockBuilder(ITranslator::class)
+            ->onlyMethods(["main"])
+            ->disableOriginalConstructor()
+            ->getMock();
+        // 定義main function的行為為: 會被呼叫任意次數(any), 當被呼叫時，參數與回傳值的對應，如我提供的array所述
+        $translator->expects($this->any())
+            ->method("main")
+            ->will($this->returnValueMap(array(
+                array("fizz", "三陽開泰"),
+                array("buzz", "五福臨門"),
+                array("whizz", "七星報喜")
+            )));
+
+        // 把假物件注入FizzBuzz
+        $t = new FizzBuzz($translator);
+        $this->assertEquals("三陽開泰", $t->echoFizzbuzz(13));
+        $this->assertEquals("三陽開泰", $t->echoFizzbuzz(23));
+    }
+
+
             /** @coversNothing
      */
     public function testFizzbuzzInthas5()
@@ -45,6 +71,15 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("buzz", $t->echoFizzbuzz(65));
     }
 
+    /** @coversNothing
+     */
+    public function test多國語系五的feedback()
+    {
+        $translator = new FakeChineseTranslator();
+        $t = new FizzBuzz($translator);
+        $this->assertEquals("五福臨門", $t->echoFizzbuzz(59));
+    }
+
                 /** @coversNothing
      */
     public function testFizzbuzzInthas7()
@@ -53,6 +88,15 @@ class FizzBuzzTest extends TestCase
         $this->assertEquals("whizz", $t->echoFizzbuzz(7));
         $this->assertEquals("whizz", $t->echoFizzbuzz(14));
         $this->assertEquals("whizz", $t->echoFizzbuzz(28));
+    }
+
+    /** @coversNothing
+     */
+    public function test多國語系七的feedback()
+    {
+        $translator = new FakeChineseTranslator();
+        $t = new FizzBuzz($translator);
+        $this->assertEquals("七星報喜", $t->echoFizzbuzz(7));
     }
 
     /** @coversNothing
@@ -181,5 +225,7 @@ class FizzBuzzTest extends TestCase
         $t->echoFizzbuzz(-150);
     }
 
+
+
 } 
-                                         
+                                            
